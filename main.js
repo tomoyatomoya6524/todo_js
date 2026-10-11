@@ -14,17 +14,22 @@ addButton.addEventListener('click',function(e){
         return;
     }
 
-    //要素を作成
+    //li要素を作成
     const todoItem = document.createElement('li');
     const todoCheckBox = document.createElement('input');
     const todoLavel = document.createElement('label');
-
+    
     todoCheckBox.type = 'checkbox';
-
+    
+    //削除ボタンの要素を作成
+    const removeButton = document.createElement('button');
+    const iconTrash = document.createElement('i');
+    iconTrash.classList.add('fa-solid','fa-trash-can','removeButton');
+    removeButton.appendChild(iconTrash);
     
 
     //li要素にclassを追加
-    todoItem.classList.add('class1');
+    todoItem.classList.add('todoItems');
     
 
     //li要素の中にtaskを入れる
@@ -36,14 +41,18 @@ addButton.addEventListener('click',function(e){
     //labelとcheckboxを合体
     todoLavel.appendChild(todoCheckBox);
     todoItem.appendChild(todoLavel);
+    todoItem.appendChild(removeButton);
 
     //ulの中にliを表示
     todoList.appendChild(todoItem);
     
-    
-
     //inputの文字列をクリアする
     taskInput.value = '';
+
+    //削除アイコンをクリックでli要素を削除
+    removeButton.addEventListener('click', function(e){
+        todoItem.remove();
+    },false);
 
     console.log(todoItem);
 },false);
@@ -51,12 +60,10 @@ addButton.addEventListener('click',function(e){
 
 
 //🔸削除
-let removeButton = document.getElementById('removeButton');
 removeButton.addEventListener('click',function(e){
 //ulリストを取得
 let todoList = document.getElementById('todoList');
 todoList.removeChild(todoList.lastElementChild);
-
 },false);
 
 
